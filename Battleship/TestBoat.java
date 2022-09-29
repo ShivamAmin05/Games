@@ -26,7 +26,7 @@ public class TestBoat{
         System.out.println("It is " + instance1.isHit(hit3) + " that the third move hit the boat");
         System.out.println("It is " + instance1.sunk() + " that the ship has sunk");
         System.out.println(" ");
-        instance1.printGrid();
+        // instance1.printGrid();
         System.out.println(" ");
 
         System.out.println("The second boat is a " + instance2.name());
@@ -41,7 +41,7 @@ public class TestBoat{
         System.out.println("It is " + instance2.isHit(hit8) + " that the fifth move hit the boat");
         System.out.println("It is " + instance2.sunk() + " that the ship has sunk");
         System.out.println(" ");
-        instance2.printGrid();
+        // instance2.printGrid();
 
     }
 }
