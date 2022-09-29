@@ -50,13 +50,15 @@ public class TestOceans {
             gameBoard.shootAt(new Position(9, 0));
 
             System.out.println("Boat sunk?");
-            // System.out.println("Boat1: " + gameBoard.sunk(0));
-            // System.out.println("Boat2: " + gameBoard.sunk(1));
-            // System.out.println("Boat3: " + gameBoard.sunk(2));
-            // System.out.println("Boat4: " + gameBoard.sunk(3));
-            // System.out.println("Boat5: " + gameBoard.sunk(4));
+            System.out.println("Boat1: " + gameBoard.sunk(0));
+            System.out.println("Boat2: " + gameBoard.sunk(1));
+            System.out.println("Boat3: " + gameBoard.sunk(2));
+            System.out.println("Boat4: " + gameBoard.sunk(3));
+            System.out.println("Boat5: " + gameBoard.sunk(4));
       
-            // System.out.println("All boats sunk?: " + gameBoard.allSunk());
+            System.out.println("All boats sunk?: " + gameBoard.allSunk());
+
+            gameBoard.printGrid();
 
 
     }

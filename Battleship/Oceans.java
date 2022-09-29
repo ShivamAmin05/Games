@@ -12,6 +12,7 @@ public class Oceans {
     private static int boatIndex;
     private static boolean shotAt;
     private static ArrayList<Boat> boats = new ArrayList<Boat>();
+    private int[][] grid = new int[10][10];
     // private static Boat[] boats;
     // private int shipRow;
     // private int shipCol;
@@ -61,6 +62,7 @@ public class Oceans {
             {
                 System.out.println("A boat was hit on " + pos.gridval());
                 shotAt = true;
+                grid[pos.rowIndex()][pos.columnIndex()] = 1;
                 return;
             }
         }
@@ -116,5 +118,16 @@ public class Oceans {
     public ArrayList<Boat> allBoats()
     {
         return boats;
+    }
+    public void printGrid()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            for(int j = 0; j < 10; j++)
+            {
+                System.out.print(grid[i][j]+ ",");
+            }
+            System.out.println(" ");
+        }
     }
 }

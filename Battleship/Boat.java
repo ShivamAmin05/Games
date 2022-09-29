@@ -5,7 +5,7 @@ public class Boat {
     private int shipCol;
     int peicesHit;
     private Position curPos;
-    private boolean[][] grid = new boolean[10][10];
+    // private boolean[][] grid = new boolean[10][10];
 
     // Position startPos = new Position('D', 4);
     
@@ -66,7 +66,7 @@ public class Boat {
     }
     public void hit(Position curPos) 
     {
-            grid[curPos.rowIndex()][curPos.columnIndex()] = true;
+            // grid[curPos.rowIndex()][curPos.columnIndex()] = true;
             peicesHit += 1;
     }
  
@@ -122,15 +122,15 @@ public class Boat {
     {
         return curPos;
     }
-    public void printGrid()
-    {
-        for(int i = 0; i < 10; i++)
-        {
-            for(int j = 0; j < 10; j++)
-            {
-                System.out.print(grid[i][j]+ ",");
-            }
-            System.out.println(" ");
-        }
-    }
+    // public void printGrid()
+    // {
+    //     for(int i = 0; i < 10; i++)
+    //     {
+    //         for(int j = 0; j < 10; j++)
+    //         {
+    //             System.out.print(grid[i][j]+ ",");
+    //         }
+    //         System.out.println(" ");
+    //     }
+    // }
 }
