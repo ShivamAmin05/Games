@@ -3,7 +3,8 @@ public class Boat {
     private String orientation;
     private int shipRow;
     private int shipCol;
-    private int peicesHit;
+    int peicesHit;
+    private Position curPos;
     private boolean[][] grid = new boolean[10][10];
 
     // Position startPos = new Position('D', 4);
@@ -14,7 +15,8 @@ public class Boat {
         orientation = hori_vert;
         shipRow = startPos.rowIndex();
         shipCol = startPos.columnIndex();
-
+        curPos = startPos;
+        
         if (!(ship.equals("Aircraft Carrier") || ship.equals("Battleship") || ship.equals("Cruiser") || ship.equals("Destroyer") || ship.equals("Submarine")))
         {
             throw new IllegalArgumentException("The name of the ship has to be 'Aircraft Carrier', 'Battleship', 'Cruiser', 'Destroyer', or 'Submarine'");
@@ -30,7 +32,6 @@ public class Boat {
         {
             throw new IllegalArgumentException("The boat is outside of the range of the board");
         }
-    
     }
     public String name()
     {
@@ -100,7 +101,7 @@ public class Boat {
     }
     public boolean sunk()
     {
-        if(peicesHit == size()){
+        if(peicesHit >= size()){
             return true;
         }
         return false;
@@ -112,6 +113,14 @@ public class Boat {
     public String direction()
     {
         return orientation;
+    }
+    public String orientation()
+    {
+        return orientation;
+    }
+    public Position boatPos()
+    {
+        return curPos;
     }
     public void printGrid()
     {

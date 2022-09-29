@@ -14,7 +14,6 @@ class TTT {
         int row, col;
         int i;
     };
-
     // creates a simpler version of the gameboard that is used for the minimax
     // algorithm
     static char boardCopy[][] = { { '_', '_', '_' },
