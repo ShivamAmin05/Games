@@ -47,7 +47,7 @@ public class TestOceans {
 
             gameBoard.shootAt(new Position(9, 2));
             gameBoard.shootAt(new Position(9, 1));
-            // gameBoard.shootAt(new Position(9, 0));
+            gameBoard.shootAt(new Position(9, 0));
 
             System.out.println("Boat sunk?");
             // System.out.println("Boat1: " + gameBoard.sunk(0));

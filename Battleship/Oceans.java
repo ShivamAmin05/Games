@@ -59,13 +59,13 @@ public class Oceans {
         {
             if(boats.get(i).isHit(pos) == true)
             {
-                System.out.println("A boat was hit");
+                System.out.println("A boat was hit on " + pos.gridval());
                 shotAt = true;
                 return;
             }
         }
         shotAt = false;
-        System.out.println("A boat was not hit");
+        System.out.println("A boat was not hit on" + pos.gridval());
     }
     // public static boolean hit(Position pos)
     // {
