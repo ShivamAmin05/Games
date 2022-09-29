@@ -10,22 +10,22 @@ public class TestOceans {
         try {
             gameBoard.placeBoat("Aircraft Carrier", "vertical", new Position(0, 2));
         } catch (Exception ex) {
-            System.out.println("The boat can not overlap another boat 1");
+            System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
             gameBoard.placeBoat("Battleship", "vertical", new Position(1, 1));
         } catch (Exception ex) {
-            System.out.println("The boat can not overlap another boat 2");
+            System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
             gameBoard.placeBoat("Destroyer", "vertical", new Position(2, 0));
         } catch (Exception ex) {
-            System.out.println("The boat can not overlap another boat 3");
+            System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
             gameBoard.placeBoat("Submarine", "horizontal", new Position(9, 2));
         } catch (Exception ex) {
-            System.out.println("The boat can not overlap another boat 4");
+            System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         
             gameBoard.shootAt(new Position(0, 0));
