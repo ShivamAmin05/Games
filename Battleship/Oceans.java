@@ -87,13 +87,11 @@ public class Oceans {
 
     public boolean sunk(int boatIndex)
     {
-        boatsSunk = 0;
-        
-        if(curBoat.sunk() == true)
+        if(boats.get(boatIndex).sunk() == true)
         {
-            boatsSunk += 1;
+            return true;
         }
-        return boats.get(boatIndex).sunk();
+        return false;
     }
 
     public boolean allSunk()
@@ -114,5 +112,9 @@ public class Oceans {
         {
             return false;
         }
+    }
+    public ArrayList<Boat> allBoats()
+    {
+        return boats;
     }
 }
