@@ -1,5 +1,3 @@
-import javax.swing.plaf.TreeUI;
-import javax.swing.text.html.HTMLDocument.RunElement;
 import java.util.ArrayList;
 
 
@@ -10,66 +8,12 @@ public class Oceans {
     private static Boat curBoat;
     private int boatsSunk = 0;
     private static int boatIndex;
-    private static boolean shotAt;
+    public static boolean isHit;
+    public static char boatInitial;
+
     private static ArrayList<Boat> boats = new ArrayList<Boat>();
-    private int[][] grid = new int[10][10];
-//     private int[][][] grid = {
-//         // creates a 3d array that stores the ASCII art for the tic tac toes board
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         },
-//         {
-//             { '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓', '┏', '—', '┓' },
-//             { '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃', '┃', ' ', '┃' },
-//             { '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛', '┗', '—', '┛' },
-//         }
-// };
-    // private static Boat[] boats;
-    // private int shipRow;
-    // private int shipCol;
-    // private int peicesHit;
+    public static Grid gameBoard = new Grid();
+
     public static void placeBoat(String ship, String hori_vert, Position startPos) throws Exception
     {
         curBoat = new Boat(ship, hori_vert, startPos);
@@ -107,28 +51,27 @@ public class Oceans {
         }
         boatIndex++;
     }
-    public void shootAt(Position pos)
+    public static void shootAt(Position pos)
     {
         for(int i = 0; i < boats.size(); i++)
         {
+            isHit = false;
             if(boats.get(i).isHit(pos) == true)
             {
                 System.out.println("A boat was hit on " + pos.gridval());
-                shotAt = true;
-                grid[pos.rowIndex()][pos.columnIndex()] = 1;
+                isHit = true;
+                boatInitial = boats.get(i).abbreviation();
+                gameBoard.shotAt(pos,true,boatInitial);
                 return;
             }
         }
-        shotAt = false;
-        System.out.println("A boat was not hit on" + pos.gridval());
+        System.out.println("A boat was not hit on " + pos.gridval());
+        gameBoard.shotAt(pos,false,'M');
     }
-    // public static boolean hit(Position pos)
-    // {
-    //     if(shotAt)
-    //     {
-
-    //     }
-    // }
+    public static boolean hit(Position pos)
+    {
+        return isHit;
+    }
 
     public static String boatName()
     {
@@ -159,28 +102,10 @@ public class Oceans {
                boatsSunk += 1;
             }
         }
-        if(boatsSunk == 5)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return(boatsSunk == 5);
     }
     public ArrayList<Boat> allBoats()
     {
         return boats;
-    }
-    public void printGrid()
-    {
-        for(int i = 0; i < 10; i++)
-        {
-            for(int j = 0; j < 10; j++)
-            {
-                System.out.print(grid[i][j]+ ",");
-            }
-            System.out.println(" ");
-        }
     }
 }

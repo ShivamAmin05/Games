@@ -1,64 +1,75 @@
+
 public class TestOceans {
     
     public static void main(String[] args) {
-        Oceans gameBoard = new Oceans();
+        Oceans game = new Oceans();
         try {
-            gameBoard.placeBoat("Destroyer", "horizontal", new Position(0, 1));
+            game.placeBoat("Destroyer", "horizontal", new Position(0, 1));
         } catch (Exception ex) {
             System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
-            gameBoard.placeBoat("Aircraft Carrier", "vertical", new Position(0, 2));
+            game.placeBoat("Aircraft Carrier", "vertical", new Position(0, 2));
         } catch (Exception ex) {
             System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
-            gameBoard.placeBoat("Battleship", "vertical", new Position(1, 1));
+            game.placeBoat("Battleship", "vertical", new Position(1, 1));
         } catch (Exception ex) {
             System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
-            gameBoard.placeBoat("Destroyer", "vertical", new Position(2, 0));
+            game.placeBoat("Destroyer", "vertical", new Position(2, 0));
         } catch (Exception ex) {
             System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         try {
-            gameBoard.placeBoat("Submarine", "horizontal", new Position(9, 2));
+            game.placeBoat("Submarine", "horizontal", new Position(9, 2));
         } catch (Exception ex) {
             System.out.println("The boat can not overlap another boat or be off of the grid");
         }
         
-            gameBoard.shootAt(new Position(0, 0));
-            gameBoard.shootAt(new Position(0, 1));
+            game.gameBoard.createGrid();
 
-            gameBoard.shootAt(new Position(0, 2));
-            gameBoard.shootAt(new Position(1, 2));
-            gameBoard.shootAt(new Position(2, 2));
-            gameBoard.shootAt(new Position(3, 2));
-            gameBoard.shootAt(new Position(4, 2));
+            game.shootAt(new Position(0, 0));
+            game.shootAt(new Position(0, 1));
 
-            gameBoard.shootAt(new Position(1, 1));
-            gameBoard.shootAt(new Position(2, 1));
-            gameBoard.shootAt(new Position(3, 1));
-            gameBoard.shootAt(new Position(4, 1));
+            game.shootAt(new Position(0, 2));
+            game.shootAt(new Position(1, 2));
+            game.shootAt(new Position(2, 2));
+            game.shootAt(new Position(3, 2));
+            game.shootAt(new Position(4, 2));
 
-            gameBoard.shootAt(new Position(2, 0));
-            gameBoard.shootAt(new Position(3, 0));
+            game.shootAt(new Position(1, 1));
+            game.shootAt(new Position(2, 1));
+            game.shootAt(new Position(3, 1));
+            game.shootAt(new Position(4, 1));
 
-            gameBoard.shootAt(new Position(9, 2));
-            gameBoard.shootAt(new Position(9, 1));
-            gameBoard.shootAt(new Position(9, 0));
+            game.shootAt(new Position(2, 0));
+            game.shootAt(new Position(3, 0));
 
+            game.shootAt(new Position(9, 2));
+            game.shootAt(new Position(9, 1));
+            game.shootAt(new Position(9, 0));
+
+            game.shootAt(new Position(9, 9));
+            game.shootAt(new Position(9, 8));
+            game.shootAt(new Position(9, 0));
+            game.shootAt(new Position(0, 9));
+            game.shootAt(new Position(5, 5));
+            game.shootAt(new Position(4, 4));
+            game.shootAt(new Position(4, 3));
+            
             System.out.println("Boat sunk?");
-            System.out.println("Boat1: " + gameBoard.sunk(0));
-            System.out.println("Boat2: " + gameBoard.sunk(1));
-            System.out.println("Boat3: " + gameBoard.sunk(2));
-            System.out.println("Boat4: " + gameBoard.sunk(3));
-            System.out.println("Boat5: " + gameBoard.sunk(4));
+            System.out.println("Boat1: " + game.sunk(0));
+            System.out.println("Boat2: " + game.sunk(1));
+            System.out.println("Boat3: " + game.sunk(2));
+            System.out.println("Boat4: " + game.sunk(3));
+            System.out.println("Boat5: " + game.sunk(4));
       
-            System.out.println("All boats sunk?: " + gameBoard.allSunk());
+            System.out.println("All boats sunk?: " + game.allSunk());
 
-            gameBoard.printGrid();
+            game.gameBoard.printGrid();
 
 
     }
