@@ -4,7 +4,6 @@ public class Grid {
     private char[][] grid = new char[10][10];
     char O = 'O';
 
-    
     public void shotAt(Position pos, boolean hit, char initial)
     {
         if(hit)

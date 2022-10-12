@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Oceans {
@@ -6,18 +7,17 @@ public class Oceans {
     private static String shipType;
     private static String orientation;
     private static Boat curBoat;
-    private int boatsSunk = 0;
+    private int boatsSunk;
     private static int boatIndex;
     public static boolean isHit;
     public static char boatInitial;
 
-    private static ArrayList<Boat> boats = new ArrayList<Boat>();
+    public static ArrayList<Boat> boats = new ArrayList<Boat>();
     public static Grid gameBoard = new Grid();
 
     public static void placeBoat(String ship, String hori_vert, Position startPos) throws Exception
     {
         curBoat = new Boat(ship, hori_vert, startPos);
-        boats.add(curBoat);
         shipType = ship;
         orientation = hori_vert;
 
@@ -49,6 +49,7 @@ public class Oceans {
                 }
             }
         }
+        boats.add(curBoat);
         boatIndex++;
     }
     public static void shootAt(Position pos)
@@ -58,14 +59,14 @@ public class Oceans {
             isHit = false;
             if(boats.get(i).isHit(pos) == true)
             {
-                System.out.println("A boat was hit on " + pos.gridval());
+                // System.out.println("A boat was hit on " + pos.gridval());
                 isHit = true;
                 boatInitial = boats.get(i).abbreviation();
                 gameBoard.shotAt(pos,true,boatInitial);
                 return;
             }
         }
-        System.out.println("A boat was not hit on " + pos.gridval());
+        // System.out.println("A boat was not hit on " + pos.gridval());
         gameBoard.shotAt(pos,false,'M');
     }
     public static boolean hit(Position pos)
@@ -85,11 +86,7 @@ public class Oceans {
 
     public boolean sunk(int boatIndex)
     {
-        if(boats.get(boatIndex).sunk() == true)
-        {
-            return true;
-        }
-        return false;
+        return (boats.get(boatIndex).sunk());
     }
 
     public boolean allSunk()
@@ -104,8 +101,33 @@ public class Oceans {
         }
         return(boatsSunk == 5);
     }
-    public ArrayList<Boat> allBoats()
+    public void placeAllBoats()
     {
-        return boats;
+        String[] orientation = {"horizontal","vertical"};
+        String[] boatNames = {"Aircraft Carrier", "Battleship", "Cruiser","Destroyer","Submarine"};
+        Random pos = new Random();
+        int boatRow;
+        int orientationIndex;
+        int boatcol;
+        boolean error;
+        
+        for(int i = 0; i<5;i++)
+        {
+            error = true;
+            while(error)
+            {
+                boatRow = pos.nextInt(10);
+                orientationIndex = pos.nextInt(2);
+                boatcol = pos.nextInt(10);
+                try {
+                    placeBoat(boatNames[i], orientation[orientationIndex], new Position(boatRow, boatcol));
+                    error = false;
+                } 
+                catch (Exception ex) {
+                    error = true;
+                    // System.out.println("Fail"+i);
+                }
+            }
+        }
     }
 }

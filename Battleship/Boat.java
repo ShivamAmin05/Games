@@ -1,13 +1,11 @@
 public class Boat {
     private String shipType;
+    private String[] boatNames = {"Aircraft Carrier", "Battleship", "Cruiser","Destroyer","Submarine"};
     private String orientation;
     private int shipRow;
     private int shipCol;
     int peicesHit;
     private Position curPos;
-    // private boolean[][] grid = new boolean[10][10];
-
-    // Position startPos = new Position('D', 4);
     
     public Boat(String ship, String hori_vert, Position startPos)
     {
@@ -17,7 +15,7 @@ public class Boat {
         shipCol = startPos.columnIndex();
         curPos = startPos;
         
-        if (!(ship.equals("Aircraft Carrier") || ship.equals("Battleship") || ship.equals("Cruiser") || ship.equals("Destroyer") || ship.equals("Submarine")))
+        if (!(ship.equals(boatNames[0]) || ship.equals(boatNames[1]) || ship.equals(boatNames[2]) || ship.equals(boatNames[3]) || ship.equals(boatNames[4])))
         {
             throw new IllegalArgumentException("The name of the ship has to be 'Aircraft Carrier', 'Battleship', 'Cruiser', 'Destroyer', or 'Submarine'");
         }
@@ -28,7 +26,7 @@ public class Boat {
         {
             throw new IllegalArgumentException("The boat is outside of the range of the board");
         }
-        if(hori_vert.equals("vertical") && startPos.rowIndex() + size() > 10)
+        if(hori_vert.equals("vertical") && startPos.rowIndex() + size() >= 10)
         {
             throw new IllegalArgumentException("The boat is outside of the range of the board");
         }
@@ -43,30 +41,23 @@ public class Boat {
     }
     public int size()
     {
-        if(abbreviation() == 'A')
-        {
-            return 5;
-        }
-        if(abbreviation() == 'B')
-        {
-            return 4;
-        }
-        if(abbreviation() == 'C' || abbreviation() == 'S')
-        {
-            return 3;
-        }
-        if(abbreviation() == 'D')
-        {
-            return 2;
-        }
-        else
-        {
-            return 0;
-        }
+        switch(abbreviation()) {
+            case 'A':
+                return 5;
+            case 'B':
+                return 4;
+            case 'C':
+                return 3;
+            case 'S':
+                return 3;
+            case 'D':
+                return 2;
+            default:
+                return 0;
+          }
     }
     public void hit(Position curPos) 
     {
-            // grid[curPos.rowIndex()][curPos.columnIndex()] = true;
             peicesHit += 1;
     }
  
@@ -74,7 +65,7 @@ public class Boat {
     {
         if(direction().equals("horizontal"))
         {
-            if(curPos.columnIndex() > shipCol || curPos.columnIndex() < shipCol - size())
+            if(curPos.columnIndex() > shipCol || curPos.columnIndex() <= shipCol - size())
             {
                 return false;
             }
@@ -87,7 +78,7 @@ public class Boat {
         }
         else
         {
-            if(curPos.rowIndex() < shipRow || curPos.rowIndex() > shipRow + size())
+            if(curPos.rowIndex() < shipRow || curPos.rowIndex() >= shipRow + size())
             {
                 return false;
             }
@@ -122,15 +113,4 @@ public class Boat {
     {
         return curPos;
     }
-    // public void printGrid()
-    // {
-    //     for(int i = 0; i < 10; i++)
-    //     {
-    //         for(int j = 0; j < 10; j++)
-    //         {
-    //             System.out.print(grid[i][j]+ ",");
-    //         }
-    //         System.out.println(" ");
-    //     }
-    // }
 }
