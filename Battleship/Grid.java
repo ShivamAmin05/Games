@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Grid {
     private char[][] grid = new char[10][10];
-    char O = 'O';
+    char empty = '.';
 
     public void shotAt(Position pos, boolean hit, char initial)
     {
@@ -12,12 +12,12 @@ public class Grid {
         }
         else
         {
-            grid[pos.rowIndex()][pos.columnIndex()] = 'M'; 
+            grid[pos.rowIndex()][pos.columnIndex()] = '*'; 
         }
     }
     public boolean hit(Position pos)
     {
-        if(grid[pos.rowIndex()][pos.column()] != 'O' && grid[pos.rowIndex()][pos.column()] != 'M')
+        if(grid[pos.rowIndex()][pos.columnIndex()] != '.' && grid[pos.rowIndex()][pos.columnIndex()] != '*')
         {
             return true;
         }
@@ -26,7 +26,7 @@ public class Grid {
     }
     public boolean miss(Position pos)
     {
-        if(grid[pos.rowIndex()][pos.column()] != 'M')
+        if(grid[pos.rowIndex()][pos.columnIndex()] != '*')
         {
             return true;
         }
@@ -34,7 +34,7 @@ public class Grid {
     }
     public boolean empty(Position pos)
     {
-        if(grid[pos.rowIndex()][pos.columnIndex()] == 'O')
+        if(grid[pos.rowIndex()][pos.columnIndex()] == '.')
         {
             return true;
         }
@@ -48,19 +48,19 @@ public class Grid {
         }
         if(miss(pos))
         {
-            return 'M';
+            return '*';
         }
-        return 'O';
+        return '.';
     }
     public void createGrid()
     {
         for(int i = 0; i < 10; i++)
         {
-            Arrays.fill(grid[i], O);
+            Arrays.fill(grid[i], empty);
         }
     }
     public void printGrid()
-    {   System.out.println(" 1 2 3 4 5 6 7 8 9 10");
+    {   System.out.println("  1 2 3 4 5 6 7 8 9 10");
         System.out.println(" ┏———————————————————┓");
         int rowChar = 65;
         for(int i = 0; i < 10; i++)
@@ -75,6 +75,6 @@ public class Grid {
             System.out.println("\n ┃—┃—┃—┃—┃—┃—┃—┃—┃—┃—┃");
             
         }
-        System.out.print(" ┗———————————————————┛");
+        System.out.println(" ┗———————————————————┛");
     }
 }

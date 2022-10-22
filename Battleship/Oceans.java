@@ -21,34 +21,93 @@ public class Oceans {
         shipType = ship;
         orientation = hori_vert;
 
+        int curBoatStart;
+        int curBoatEnd;
+        int curBoatRow;
+        int curBoatCol;
+        int prevBoatStart;
+        int prevBoatEnd;
+        int prevBoatRow;
+        int prevBoatCol;
+
         for(int i = 0; i < boats.size(); i++)
         {
-            if(i == boatIndex)
+            if(curBoat.orientation().equals("horizontal") && boats.get(i).orientation().equals("horizontal"))
             {
-                continue;
+                curBoatStart = curBoat.boatPos().columnIndex();
+                curBoatEnd = curBoat.boatPos().columnIndex() - curBoat.size() + 1; 
+                curBoatRow = curBoat.boatPos().rowIndex();
+
+                prevBoatStart = boats.get(i).boatPos().columnIndex();
+                prevBoatEnd = boats.get(i).boatPos().columnIndex() - boats.get(i).size() + 1;
+                prevBoatRow = boats.get(i).boatPos().rowIndex();
+
+                if(curBoatRow == prevBoatRow)
+                {
+                    if(curBoatStart >= prevBoatEnd && curBoatEnd <= prevBoatStart)
+                    {
+                        throw(new Exception());
+                    }
+                }
             }
 
-            if(curBoat.orientation().equals("horizontal"))
+            if(curBoat.orientation().equals("horizontal") && boats.get(i).orientation().equals("vertical"))
             {
-                if(curBoat.boatPos().columnIndex() >= boats.get(i).boatPos().columnIndex() && curBoat.boatPos().columnIndex() - curBoat.size() + 1 <= boats.get(i).boatPos().columnIndex())
+                curBoatStart = curBoat.boatPos().columnIndex();
+                curBoatEnd = curBoat.boatPos().columnIndex() - curBoat.size() + 1; 
+                curBoatRow = curBoat.boatPos().rowIndex();
+
+                prevBoatStart = boats.get(i).boatPos().rowIndex();
+                prevBoatEnd = boats.get(i).boatPos().rowIndex() + boats.get(i).size() - 1;
+                prevBoatCol = boats.get(i).boatPos().columnIndex();
+
+                if(curBoatStart >= prevBoatCol && curBoatEnd <= prevBoatCol)
                 {
-                    if(curBoat.boatPos().rowIndex() >= boats.get(i).boatPos().rowIndex() && curBoat.boatPos().rowIndex() <= boats.get(i).boatPos().rowIndex() + boats.get(i).size() - 1)
+                    if(curBoatRow >= prevBoatStart && curBoatRow <= prevBoatEnd)
+                    {
+                        throw(new Exception());
+                    }
+                }
+
+            }
+
+            if(curBoat.orientation().equals("vertical") && boats.get(i).orientation().equals("vertical"))
+            {
+                curBoatStart = curBoat.boatPos().rowIndex();
+                curBoatEnd = curBoat.boatPos().rowIndex() + curBoat.size() - 1; 
+                curBoatCol = curBoat.boatPos().columnIndex();
+
+                prevBoatStart = boats.get(i).boatPos().rowIndex();
+                prevBoatEnd = boats.get(i).boatPos().rowIndex() + boats.get(i).size() - 1;
+                prevBoatCol = boats.get(i).boatPos().columnIndex();
+
+                if(curBoatCol == prevBoatCol)
+                {
+                    if(curBoatStart <= prevBoatEnd && curBoatEnd >= prevBoatStart)
                     {
                         throw(new Exception());
                     }
                 }
             }
-            if(curBoat.orientation().equals("vertical"))
+            if(curBoat.orientation().equals("vertical") && boats.get(i).orientation().equals("horizontal"))
             {
-                if(curBoat.boatPos().rowIndex() <= boats.get(i).boatPos().rowIndex() && curBoat.boatPos().rowIndex() + curBoat.size() - 1 >= boats.get(i).boatPos().rowIndex())
+                curBoatStart = curBoat.boatPos().rowIndex();
+                curBoatEnd = curBoat.boatPos().rowIndex() + curBoat.size() - 1; 
+                curBoatCol = curBoat.boatPos().columnIndex();
+
+                prevBoatStart = boats.get(i).boatPos().columnIndex();
+                prevBoatEnd = boats.get(i).boatPos().columnIndex() - boats.get(i).size() + 1;
+                prevBoatRow = boats.get(i).boatPos().rowIndex();
+
+                if(curBoatStart <= prevBoatRow && curBoatEnd >= prevBoatRow)
                 {
-                    if(curBoat.boatPos().columnIndex() <= boats.get(i).boatPos().columnIndex() && curBoat.boatPos().columnIndex() >= boats.get(i).boatPos().columnIndex() - boats.get(i).size() + 1)
+                    if(curBoatCol <= prevBoatStart && curBoatCol >= prevBoatEnd)
                     {
                         throw(new Exception());
                     }
                 }
             }
-        }
+        }   
         boats.add(curBoat);
         boatIndex++;
     }
@@ -59,15 +118,13 @@ public class Oceans {
             isHit = false;
             if(boats.get(i).isHit(pos) == true)
             {
-                // System.out.println("A boat was hit on " + pos.gridval());
                 isHit = true;
                 boatInitial = boats.get(i).abbreviation();
                 gameBoard.shotAt(pos,true,boatInitial);
                 return;
             }
         }
-        // System.out.println("A boat was not hit on " + pos.gridval());
-        gameBoard.shotAt(pos,false,'M');
+        gameBoard.shotAt(pos,false,'*');
     }
     public static boolean hit(Position pos)
     {
@@ -84,9 +141,16 @@ public class Oceans {
         return shipType.charAt(0);
     }
 
-    public boolean sunk(int boatIndex)
+    public boolean sunk(Position pos)
     {
-        return (boats.get(boatIndex).sunk());
+        for(int i=0;i<5;i++)
+        {
+            if(boats.get(i).abbreviation() == gameBoard.boatInitial(pos) && boats.get(i).sunk())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean allSunk()
@@ -125,9 +189,9 @@ public class Oceans {
                 } 
                 catch (Exception ex) {
                     error = true;
-                    // System.out.println("Fail"+i);
                 }
             }
         }
     }
+
 }

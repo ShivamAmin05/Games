@@ -97,10 +97,6 @@ public class Boat {
         }
         return false;
     }
-    // public Position position()
-    // {
-    //     return startPos;
-    // }
     public String direction()
     {
         return orientation;
