@@ -8,7 +8,7 @@ public class BattleshipGame {
         player.startGame();
         player.grid.placeAllBoats();
         player.grid.gameBoard.createGrid();
-    }
+    } 
 
     public int play()
     {

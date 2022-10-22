@@ -37,7 +37,7 @@ public class Position {
     {
         return colVal;
     }
-    public String gridval()
+    public String gridVal()
     {
         return row() + "-" + Integer.toString(column());
     }

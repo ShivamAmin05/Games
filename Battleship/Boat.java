@@ -56,7 +56,7 @@ public class Boat {
                 return 0;
           }
     }
-    public void hit(Position curPos) 
+    public void hit() 
     {
             peicesHit += 1;
     }
@@ -71,7 +71,7 @@ public class Boat {
             }
             if(curPos.rowIndex() == shipRow)
             {
-                hit(curPos);
+                hit();
                 return true;
             }
             return false; 
@@ -84,7 +84,7 @@ public class Boat {
             }
             if(curPos.columnIndex() == shipCol)
             {
-                hit(curPos);
+                hit();
                 return true;
             }
             return false; 

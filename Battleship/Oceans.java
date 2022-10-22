@@ -5,21 +5,18 @@ import java.util.Random;
 public class Oceans {
 
     private static String shipType;
-    private static String orientation;
     private static Boat curBoat;
-    private int boatsSunk;
     private static int boatIndex;
     public static boolean isHit;
     public static char boatInitial;
 
-    public static ArrayList<Boat> boats = new ArrayList<Boat>();
+    public static ArrayList<Boat> boats = new ArrayList<>();
     public static Grid gameBoard = new Grid();
 
-    public static void placeBoat(String ship, String hori_vert, Position startPos) throws Exception
+    public static void placeBoat(String ship, String orientation, Position startPos) throws Exception
     {
-        curBoat = new Boat(ship, hori_vert, startPos);
+        curBoat = new Boat(ship, orientation, startPos);
         shipType = ship;
-        orientation = hori_vert;
 
         int curBoatStart;
         int curBoatEnd;
@@ -116,7 +113,7 @@ public class Oceans {
         for(int i = 0; i < boats.size(); i++)
         {
             isHit = false;
-            if(boats.get(i).isHit(pos) == true)
+            if(boats.get(i).isHit(pos))
             {
                 isHit = true;
                 boatInitial = boats.get(i).abbreviation();
@@ -126,7 +123,7 @@ public class Oceans {
         }
         gameBoard.shotAt(pos,false,'*');
     }
-    public static boolean hit(Position pos)
+    public static boolean hit()
     {
         return isHit;
     }
@@ -136,7 +133,7 @@ public class Oceans {
         return shipType;
     }
 
-    public static char boatInitial()
+    public static char abbreviation()
     {
         return shipType.charAt(0);
     }
@@ -155,10 +152,10 @@ public class Oceans {
 
     public boolean allSunk()
     {
-        boatsSunk = 0;
+        int boatsSunk = 0;
         for(int i = 0; i < boats.size(); i++)
         {
-            if(boats.get(i).sunk() == true)
+            if(boats.get(i).sunk())
             {
                boatsSunk += 1;
             }
@@ -172,7 +169,7 @@ public class Oceans {
         Random pos = new Random();
         int boatRow;
         int orientationIndex;
-        int boatcol;
+        int boatCol;
         boolean error;
         
         for(int i = 0; i<5;i++)
@@ -182,9 +179,9 @@ public class Oceans {
             {
                 boatRow = pos.nextInt(10);
                 orientationIndex = pos.nextInt(2);
-                boatcol = pos.nextInt(10);
+                boatCol = pos.nextInt(10);
                 try {
-                    placeBoat(boatNames[i], orientation[orientationIndex], new Position(boatRow, boatcol));
+                    placeBoat(boatNames[i], orientation[orientationIndex], new Position(boatRow, boatCol));
                     error = false;
                 } 
                 catch (Exception ex) {

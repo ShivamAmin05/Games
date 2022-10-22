@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 public class Grid {
     private char[][] grid = new char[10][10];
-    char empty = '.';
 
     public void shotAt(Position pos, boolean hit, char initial)
     {
@@ -56,7 +55,7 @@ public class Grid {
     {
         for(int i = 0; i < 10; i++)
         {
-            Arrays.fill(grid[i], empty);
+            Arrays.fill(grid[i], '.');
         }
     }
     public void printGrid()

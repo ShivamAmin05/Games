@@ -7,7 +7,7 @@ public class TestPos {
         System.out.println(instance1.column());
         System.out.println(instance1.rowIndex());
         System.out.println(instance1.columnIndex());
-        System.out.println(instance1.gridval());
+        System.out.println(instance1.gridVal());
 
         System.out.println(" ");
 
@@ -15,6 +15,6 @@ public class TestPos {
         System.out.println(instance2.column());
         System.out.println(instance2.rowIndex());
         System.out.println(instance2.columnIndex());
-        System.out.println(instance2.gridval());
+        System.out.println(instance2.gridVal());
     }
 }

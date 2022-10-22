@@ -47,11 +47,11 @@ public class BattleshipPlayer {
         System.out.println("Turn #"+turns+":");
         if(grid.isHit == true)
         {
-            System.out.println("Your shot at "+pos.gridval()+" was a hit ");
+            System.out.println("Your shot at "+pos.gridVal()+" was a hit ");
         }
         else
         {
-            System.out.println("Your shot at "+pos.gridval()+" was not a hit ");
+            System.out.println("Your shot at "+pos.gridVal()+" was not a hit ");
         }
         if(grid.sunk(pos))
         {
