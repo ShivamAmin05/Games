@@ -4,13 +4,13 @@ public class Boat {
     private String orientation;
     private int shipRow;
     private int shipCol;
-    int peicesHit;
+    int piecesHit;
     private Position curPos;
     
-    public Boat(String ship, String hori_vert, Position startPos)
+    public Boat(String ship, String orientation, Position startPos)
     {
         shipType = ship;
-        orientation = hori_vert;
+        this.orientation = orientation;
         shipRow = startPos.rowIndex();
         shipCol = startPos.columnIndex();
         curPos = startPos;
@@ -19,14 +19,14 @@ public class Boat {
         {
             throw new IllegalArgumentException("The name of the ship has to be 'Aircraft Carrier', 'Battleship', 'Cruiser', 'Destroyer', or 'Submarine'");
         }
-        if(!(hori_vert.equals("horizontal") || hori_vert.equals("vertical"))){
+        if(!(orientation.equals("horizontal") || orientation.equals("vertical"))){
             throw new IllegalArgumentException("The orientation of the ship has to be either 'horizontal' or 'vertical'");
         }
-        if(hori_vert.equals("horizontal") && startPos.column() - size() < 0)
+        if(orientation.equals("horizontal") && startPos.column() - size() < 0)
         {
             throw new IllegalArgumentException("The boat is outside of the range of the board");
         }
-        if(hori_vert.equals("vertical") && startPos.rowIndex() + size() >= 10)
+        if(orientation.equals("vertical") && startPos.rowIndex() + size() >= 10)
         {
             throw new IllegalArgumentException("The boat is outside of the range of the board");
         }
@@ -58,7 +58,7 @@ public class Boat {
     }
     public void hit() 
     {
-            peicesHit += 1;
+            piecesHit += 1;
     }
  
     public boolean isHit(Position curPos)
@@ -92,10 +92,7 @@ public class Boat {
     }
     public boolean sunk()
     {
-        if(peicesHit >= size()){
-            return true;
-        }
-        return false;
+        return(piecesHit >= size());
     }
     public String direction()
     {

@@ -16,28 +16,17 @@ public class Grid {
     }
     public boolean hit(Position pos)
     {
-        if(grid[pos.rowIndex()][pos.columnIndex()] != '.' && grid[pos.rowIndex()][pos.columnIndex()] != '*')
-        {
-            return true;
-        }
-        return false;
+        return(grid[pos.rowIndex()][pos.columnIndex()] != '.' && grid[pos.rowIndex()][pos.columnIndex()] != '*');
+
         
     }
     public boolean miss(Position pos)
     {
-        if(grid[pos.rowIndex()][pos.columnIndex()] != '*')
-        {
-            return true;
-        }
-        return false;
+        return(grid[pos.rowIndex()][pos.columnIndex()] != '*');
     }
     public boolean empty(Position pos)
     {
-        if(grid[pos.rowIndex()][pos.columnIndex()] == '.')
-        {
-            return true;
-        }
-        return false;
+        return(grid[pos.rowIndex()][pos.columnIndex()] == '.');
     }
     public char boatInitial(Position pos)
     {
