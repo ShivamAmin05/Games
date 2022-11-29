@@ -12,7 +12,7 @@ public class BattleshipGame {
 
     public int play()
     {
-        while(player.turns != 100 && player.grid.allSunk() != true)
+        while(player.turns != 100 && !player.grid.allSunk())
         {
             player.shoot();
         }

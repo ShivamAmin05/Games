@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Grid {
-    private char[][] grid = new char[10][10];
+    char[][] grid = new char[10][10];
 
     public void shotAt(Position pos, boolean hit, char initial)
     {
@@ -17,7 +17,6 @@ public class Grid {
     public boolean hit(Position pos)
     {
         return(grid[pos.rowIndex()][pos.columnIndex()] != '.' && grid[pos.rowIndex()][pos.columnIndex()] != '*');
-
         
     }
     public boolean miss(Position pos)

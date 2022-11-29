@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class BattleshipPlayer {
-    private String name;
+    protected String name;
     public Oceans grid;
     public int turns;
 

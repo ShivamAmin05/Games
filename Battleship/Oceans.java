@@ -10,9 +10,15 @@ public class Oceans {
     public static boolean isHit;
     public static char boatInitial;
 
-    public static ArrayList<Boat> boats = new ArrayList<>();
-    public static Grid gameBoard = new Grid();
+    public static ArrayList<Boat> boats;
+    public static Grid gameBoard;
 
+    public Oceans()
+    {
+        gameBoard = new Grid();
+        boats = new ArrayList<>();
+    }
+    
     public static void placeBoat(String ship, String orientation, Position startPos) throws Exception
     {
         curBoat = new Boat(ship, orientation, startPos);
