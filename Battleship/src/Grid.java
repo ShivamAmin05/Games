@@ -21,7 +21,6 @@ public class Grid {
     public boolean hit(Position pos)
     {
         return(!empty(pos) && miss(pos));
-        
     }
     public boolean miss(Position pos)
     {
@@ -64,7 +63,6 @@ public class Grid {
                 System.out.print(grid[i][j] + "┃");
             }
             System.out.println("\n ┃—┃—┃—┃—┃—┃—┃—┃—┃—┃—┃");
-            
         }
         System.out.println(" ┗———————————————————┛");
     }

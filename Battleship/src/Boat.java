@@ -56,11 +56,7 @@ public class Boat {
                 return 0;
           }
     }
-    public void hit() 
-    {
-            piecesHit += 1;
-    }
- 
+   
     public boolean isHit(Position curPos)
     {
         if(direction().equals("horizontal"))
@@ -71,7 +67,7 @@ public class Boat {
             }
             if(curPos.rowIndex() == shipRow)
             {
-                hit();
+                piecesHit += 1;
                 return true;
             }
             return false; 
@@ -84,7 +80,7 @@ public class Boat {
             }
             if(curPos.columnIndex() == shipCol)
             {
-                hit();
+                piecesHit += 1;
                 return true;
             }
             return false; 

@@ -178,7 +178,6 @@ public class Oceans {
                 break;
             case 'S': boatSizes.set(4,10);
                 break;
-                
         }
         smallestShipLeft = Collections.min(boatSizes);
     }

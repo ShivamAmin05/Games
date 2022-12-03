@@ -12,7 +12,6 @@ public class PlayerEvaluator {
             minTurns = Math.min(turns, minTurns);
             maxTurns = Math.max(turns, maxTurns);
             avgTurns += turns;
-            
         }
         System.out.println("The minimum number of turns is " + minTurns);
         System.out.println("The maximum number of turns is " + maxTurns);
