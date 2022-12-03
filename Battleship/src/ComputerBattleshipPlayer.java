@@ -69,7 +69,7 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
         }
         if(squares.isEmpty())
         {
-            chooseRandSquare();
+            chooseRandSquareParity();
         }
         else
         {   
