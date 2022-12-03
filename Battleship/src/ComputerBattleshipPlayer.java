@@ -4,6 +4,7 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
     int colVal = (int)(Math.random() * 10);
     public ArrayList<Position> squares;
 
+
     public ComputerBattleshipPlayer()
     {
         name = playerName();
@@ -14,10 +15,10 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
     {
         return "Computer Player";
     }
-    public void updateGrid(Position pos)
-    {
-        grid.shootAt(pos);
-    }
+    // public void updateGrid(Position pos)
+    // {
+    //     grid.shootAt(pos);
+    // }
     public void chooseRandSquare()
     {
         while(grid.gameBoard.grid[rowVal][colVal] != '.')
@@ -28,13 +29,11 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
     }
     public void chooseRandSquareParity()
     {
-        rowVal = (int)(Math.random() * 10);
-        colVal = (int)(Math.random() * 10);
         while(true)
         {
             rowVal = (int)(Math.random() * 10);
             colVal = (int)(Math.random() * 10);
-            if(grid.gameBoard.grid[rowVal][colVal] != '.')
+            if(!grid.gameBoard.empty(new Position(rowVal, colVal)))
             {
                 continue;
             }
@@ -56,11 +55,11 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
             {
                 for(int j = 0; j <= 1; j++)
                 {
-                    if(i != j && rowVal + i <= 9 && rowVal + i>= 0 && colVal + j <= 9 && colVal + j >= 0 && grid.gameBoard.grid[rowVal + i][colVal + j] == '.')
+                    if(i != j && rowVal + i <= 9 && rowVal + i>= 0 && colVal + j <= 9 && colVal + j >= 0 && grid.gameBoard.empty(new Position(rowVal + i, colVal + j)))
                     {
                         squares.add(new Position(rowVal + i, colVal + j));
                     }
-                    if(i != j && rowVal - i <= 9 && rowVal - i>= 0 && colVal - j <= 9 && colVal - j >= 0 && grid.gameBoard.grid[rowVal - i][colVal - j] == '.')
+                    if(i != j && rowVal - i <= 9 && rowVal - i>= 0 && colVal - j <= 9 && colVal - j >= 0 && grid.gameBoard.empty(new Position(rowVal - i, colVal - j)))
                     {
                         squares.add(new Position(rowVal - i, colVal - j));
                     }
@@ -78,6 +77,10 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
             squares.remove(squares.size()-1);
         }
     }
+    public void probMap()
+    {
+
+    }
 
     public Position shoot()
     {
@@ -85,9 +88,8 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
         // chooseRandSquare();
         // chooseRandSquareParity();
         updateGrid(new Position(rowVal, colVal));
-        // updatePlayer(new Position(rowVal, colVal));
+        updatePlayer(new Position(rowVal, colVal));
         turns++;
-        int smallestShipLeft = grid.smallestShipLeft;
-        return( new Position(rowVal, colVal));
+        return(new Position(rowVal, colVal));
     }
 }

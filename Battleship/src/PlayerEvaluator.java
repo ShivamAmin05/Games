@@ -1,6 +1,6 @@
 public class PlayerEvaluator {
     public int maxTurns;
-    public int minTurns = 200;
+    public int minTurns = 104;
     public double avgTurns;
     PlayerEvaluator(ComputerBattleshipPlayer player, int runs)
     {

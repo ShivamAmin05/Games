@@ -45,7 +45,7 @@ public class BattleshipPlayer {
     public void updatePlayer(Position pos)
     {
         System.out.println("Turn #"+turns+":");
-        if(grid.isHit == true)
+        if(grid.hit())
         {
             System.out.println("Your shot at "+pos.gridVal()+" was a hit ");
         }

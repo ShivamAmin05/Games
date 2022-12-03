@@ -3,12 +3,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
+import javax.swing.plaf.TextUI;
+
 
 public class Oceans {
 
     private static String shipType;
     private static Boat curBoat;
-    public static boolean isHit;
+    private static boolean isHit;
     public static char boatInitial;
     public int smallestShipLeft = 2;
     public static ArrayList<Boat> boats;
@@ -202,22 +204,19 @@ public class Oceans {
         int boatRow;
         int orientationIndex;
         int boatCol;
-        boolean error;
         
         for(int i = 0; i<5;i++)
         {
-            error = true;
-            while(error)
+            while(true)
             {
                 boatRow = pos.nextInt(10);
                 orientationIndex = pos.nextInt(2);
                 boatCol = pos.nextInt(10);
                 try {
                     placeBoat(boatNames[i], orientation[orientationIndex], new Position(boatRow, boatCol));
-                    error = false;
+                    break;
                 } 
                 catch (Exception ex) {
-                    error = true;
                 }
             }
         }

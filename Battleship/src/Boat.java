@@ -4,7 +4,7 @@ public class Boat {
     private String orientation;
     private int shipRow;
     private int shipCol;
-    int piecesHit;
+    private int piecesHit;
     private Position curPos;
     
     public Boat(String ship, String orientation, Position startPos)
@@ -22,11 +22,7 @@ public class Boat {
         if(!(orientation.equals("horizontal") || orientation.equals("vertical"))){
             throw new IllegalArgumentException("The orientation of the ship has to be either 'horizontal' or 'vertical'");
         }
-        if(orientation.equals("horizontal") && startPos.column() - size() < 0)
-        {
-            throw new IllegalArgumentException("The boat is outside of the range of the board");
-        }
-        if(orientation.equals("vertical") && startPos.rowIndex() + size() >= 10)
+        if( (orientation.equals("horizontal") && startPos.column() - size() < 0) || (orientation.equals("vertical") && startPos.rowIndex() + size() >= 10) )
         {
             throw new IllegalArgumentException("The boat is outside of the range of the board");
         }
@@ -59,7 +55,7 @@ public class Boat {
    
     public boolean isHit(Position curPos)
     {
-        if(direction().equals("horizontal"))
+        if(orientation.equals("horizontal"))
         {
             if(curPos.columnIndex() > shipCol || curPos.columnIndex() <= shipCol - size())
             {
@@ -89,10 +85,6 @@ public class Boat {
     public boolean sunk()
     {
         return(piecesHit >= size());
-    }
-    public String direction()
-    {
-        return orientation;
     }
     public String orientation()
     {
