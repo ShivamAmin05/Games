@@ -9,6 +9,10 @@ public class Grid {
         {
             grid[pos.rowIndex()][pos.columnIndex()] = initial;
         }
+        else if (!empty(pos))
+        {
+            return;
+        }
         else
         {
             grid[pos.rowIndex()][pos.columnIndex()] = '*'; 
@@ -16,7 +20,7 @@ public class Grid {
     }
     public boolean hit(Position pos)
     {
-        return(grid[pos.rowIndex()][pos.columnIndex()] != '.' && grid[pos.rowIndex()][pos.columnIndex()] != '*');
+        return(!empty(pos) && miss(pos));
         
     }
     public boolean miss(Position pos)

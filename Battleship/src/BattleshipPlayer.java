@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class BattleshipPlayer {
     protected String name;
     public Oceans grid;
-    public int turns;
+    public int turns = 1;
 
     public BattleshipPlayer()
     {

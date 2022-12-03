@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 
@@ -6,17 +8,23 @@ public class Oceans {
 
     private static String shipType;
     private static Boat curBoat;
-    private static int boatIndex;
     public static boolean isHit;
     public static char boatInitial;
-
+    public int smallestShipLeft = 2;
     public static ArrayList<Boat> boats;
+    public static ArrayList<Integer> boatSizes;
     public static Grid gameBoard;
 
     public Oceans()
     {
         gameBoard = new Grid();
         boats = new ArrayList<>();
+        boatSizes = new ArrayList<>();
+        boatSizes.add(5);
+        boatSizes.add(4);
+        boatSizes.add(3);
+        boatSizes.add(2);
+        boatSizes.add(3);
     }
     
     public static void placeBoat(String ship, String orientation, Position startPos) throws Exception
@@ -112,20 +120,20 @@ public class Oceans {
             }
         }   
         boats.add(curBoat);
-        boatIndex++;
     }
     public static void shootAt(Position pos)
     {
         for(int i = 0; i < boats.size(); i++)
         {
             isHit = false;
-            if(boats.get(i).isHit(pos))
+            if(gameBoard.grid[pos.rowIndex()][pos.columnIndex()] == '.' && boats.get(i).isHit(pos))
             {
                 isHit = true;
                 boatInitial = boats.get(i).abbreviation();
                 gameBoard.shotAt(pos,true,boatInitial);
                 return;
             }
+
         }
         gameBoard.shotAt(pos,false,'*');
     }
@@ -150,10 +158,29 @@ public class Oceans {
         {
             if(boats.get(i).abbreviation() == gameBoard.boatInitial(pos) && boats.get(i).sunk())
             {
+                setLongestShipSize(gameBoard.boatInitial(pos));
                 return true;
             }
         }
         return false;
+    }
+    private void setLongestShipSize(char initial)
+    {
+        switch(initial)
+        {
+            case 'A': boatSizes.set(0, 10);
+                break;
+            case 'B': boatSizes.set(1, 10);
+                break;
+            case 'C': boatSizes.set(2, 10);
+                break;
+            case 'D': boatSizes.set(3, 10);
+                break;
+            case 'S': boatSizes.set(4,10);
+                break;
+                
+        }
+        smallestShipLeft = Collections.min(boatSizes);
     }
 
     public boolean allSunk()
