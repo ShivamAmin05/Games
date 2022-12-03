@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.Random;
 public class ComputerBattleshipPlayer extends BattleshipPlayer {
-    int rowVal = (int)(Math.random() * 10);
-    int colVal = (int)(Math.random() * 10);
+    int rowVal;
+    int colVal;
     public ArrayList<Position> squares;
-
 
     public ComputerBattleshipPlayer()
     {
@@ -15,29 +15,31 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
     {
         return "Computer Player";
     }
-    // public void updateGrid(Position pos)
-    // {
-    //     grid.shootAt(pos);
-    // }
+    public void updateGrid(Position pos)
+    {
+        grid.shootAt(pos);
+    }
     public void chooseRandSquare()
     {
-        while(grid.gameBoard.grid[rowVal][colVal] != '.')
+        Random pos = new Random();
+        do
         {
-            rowVal = (int)(Math.random() * 10);
-            colVal = (int)(Math.random() * 10);
-        }
+            rowVal = pos.nextInt(10);
+            colVal = pos.nextInt(10);
+        }while(!grid.gameBoard.empty(new Position(rowVal, colVal)));
     }
     public void chooseRandSquareParity()
     {
+        Random pos = new Random();
         while(true)
         {
-            rowVal = (int)(Math.random() * 10);
-            colVal = (int)(Math.random() * 10);
+            rowVal = pos.nextInt(10);
+            colVal = pos.nextInt(10);
             if(!grid.gameBoard.empty(new Position(rowVal, colVal)))
             {
                 continue;
             }
-            else if(((colVal + rowVal) % grid.smallestShipLeft) != 0)
+            else if(((colVal + rowVal) % grid.smallestShipLeft()) != 0)
             {
                 continue;
             }
@@ -88,7 +90,7 @@ public class ComputerBattleshipPlayer extends BattleshipPlayer {
         // chooseRandSquare();
         // chooseRandSquareParity();
         updateGrid(new Position(rowVal, colVal));
-        updatePlayer(new Position(rowVal, colVal));
+        // updatePlayer(new Position(rowVal, colVal));
         turns++;
         return(new Position(rowVal, colVal));
     }

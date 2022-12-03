@@ -1,18 +1,14 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
-
-import javax.swing.plaf.TextUI;
-
 
 public class Oceans {
 
     private static String shipType;
     private static Boat curBoat;
     private static boolean isHit;
-    public static char boatInitial;
-    public int smallestShipLeft = 2;
+    private static char boatInitial;
+    private int smallestShipLeft = 2;
     public static ArrayList<Boat> boats;
     public static ArrayList<Integer> boatSizes;
     public static Grid gameBoard;
@@ -128,7 +124,7 @@ public class Oceans {
         for(int i = 0; i < boats.size(); i++)
         {
             isHit = false;
-            if(gameBoard.grid[pos.rowIndex()][pos.columnIndex()] == '.' && boats.get(i).isHit(pos))
+            if(gameBoard.empty(pos) && boats.get(i).isHit(pos))
             {
                 isHit = true;
                 boatInitial = boats.get(i).abbreviation();
@@ -143,20 +139,17 @@ public class Oceans {
     {
         return isHit;
     }
-
     public static String boatName()
     {
         return shipType;
     }
-
-    public static char abbreviation()
+    public int smallestShipLeft()
     {
-        return shipType.charAt(0);
+        return smallestShipLeft;
     }
-
     public boolean sunk(Position pos)
     {
-        for(int i=0;i<5;i++)
+        for(int i = 0;i < 5;i++)
         {
             if(boats.get(i).abbreviation() == gameBoard.boatInitial(pos) && boats.get(i).sunk())
             {
@@ -183,7 +176,6 @@ public class Oceans {
         }
         smallestShipLeft = Collections.min(boatSizes);
     }
-
     public boolean allSunk()
     {
         int boatsSunk = 0;
