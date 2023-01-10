@@ -9,9 +9,6 @@ import java.awt.event.ActionListener;
 
 class BallTestTwo extends Canvas implements Runnable
 {
-	private Ball ball1;
-	private Ball ball2;
-	private Ball ball3;
 	private Ball ball;
 
 	public BallTestTwo()

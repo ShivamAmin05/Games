@@ -17,6 +17,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 {
 	private Ball ball;
 	private Paddle leftPaddle;
+	private Paddle rightPaddle;
 	private boolean[] keys;		//keeps track of what keys are pressed
 
 	public PaddleTestTwo()
@@ -25,16 +26,16 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 
 
 		//instantiate a Ball
-		
+		ball = new Ball();
 		
 		
 		//instantiate a left Paddle
-		
+		leftPaddle = new Paddle(5,300,10,50,5);
 		
 		
 		
 		//instantiate a right Paddle
-		
+		rightPaddle = new Paddle(785,300, 10,50,5);
 		
 		
 
@@ -59,6 +60,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 	{
 		ball.moveAndDraw(window);
 		leftPaddle.draw(window);
+		rightPaddle.draw(window);
 
 		if(!(ball.getX()>=10 && ball.getX()<=550))
 		{
@@ -78,16 +80,16 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		if(keys[1] == true)
 		{
 			//move left paddle down and draw it on the window
-
+			leftPaddle.moveDownAndDraw(window);
 
 		}
 		if(keys[2] == true)
 		{
-
+			rightPaddle.moveUpAndDraw(window);
 		}
 		if(keys[3] == true)
 		{
-
+			rightPaddle.moveDownAndDraw(window);
 		}
 	}
 
@@ -96,9 +98,9 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
+			case 'S' : keys[1]=true; break;
 			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
+			case 'K' : keys[3]=true; break;
 		}
 	}
 
@@ -107,9 +109,9 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
+			case 'S' : keys[1]=false; break;
 			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
+			case 'K' : keys[3]=false; break;
 		}
 	}
 
@@ -125,6 +127,8 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
    		while(true)
    		{
    		   Thread.currentThread().sleep(8);
+			System.out.println(ball);
+			// System.out.println("OK");
             repaint();
          }
       }catch(Exception e)
