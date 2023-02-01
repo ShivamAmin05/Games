@@ -128,7 +128,6 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
    		{
    		   Thread.currentThread().sleep(8);
 			System.out.println(ball);
-			// System.out.println("OK");
             repaint();
          }
       }catch(Exception e)

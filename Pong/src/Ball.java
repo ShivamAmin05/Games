@@ -31,6 +31,8 @@ public class Ball extends Block
 	public Ball(int xPos, int yPos, int width, int height, Color color)
 	{
 		super(xPos,yPos,width,height,color);
+		xSpeed = 3;
+		ySpeed = 1;
 	}
 	public Ball(int xPos, int yPos, int width, int height, Color color, int xSpeed, int ySpeed)
 	{
@@ -40,16 +42,6 @@ public class Ball extends Block
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	   
    //add the set methods
    public void setXSpeed(int xSpeed)
    {
@@ -64,7 +56,7 @@ public class Ball extends Block
    public void moveAndDraw(Graphics window)
    {
    	//draw a white ball at old ball location
-	draw(window, Color.WHITE); 
+	draw(window, Color.BLACK); 
 	setX(getX()+xSpeed);
 		//setY
 	setY(getY()+ySpeed);
@@ -91,4 +83,24 @@ public class Ball extends Block
    {
       return getX() + " " + getY() + " " + getWidth() + " " + getHeight() + " " + getColor() + " " + xSpeed + " " + ySpeed + "\n";
    }
+   public boolean didCollideLeft(Object obj)
+	{
+		Block other = (Block)obj;
+		return getX() <= other.getX() + other.getWidth() + Math.abs(getXSpeed());
+	}
+	public boolean didCollideRight(Object obj)
+	{
+		Block other = (Block)obj;
+		return getX() + getWidth() >= other.getX() - Math.abs(getXSpeed());
+	}
+	public boolean didCollideTop(Object obj)
+	{
+		Block other = (Block)obj;
+		return getY() >= other.getY() && getY() <= other.getY() + other.getHeight();
+	}
+	public boolean didCollideBottom(Object obj)
+	{
+		Block other = (Block)obj;
+		return getY() + getHeight() >= other.getY() && getY() + getHeight()  < other.getY() + other.getHeight();
+	}
 }
