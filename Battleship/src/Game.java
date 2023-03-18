@@ -3,7 +3,7 @@ public class Game {
     
     public static void main(String[] args) {
         ComputerBattleshipPlayer player = new ComputerBattleshipPlayer();
-        PlayerEvaluator computer = new PlayerEvaluator(player, 1000000);
+        PlayerEvaluator computer = new PlayerEvaluator(player, 100000);
         BattleshipGame game = new BattleshipGame(player);
         // BattleshipPlayer player2 = new BattleshipPlayer();
         // BattleshipGame game2 = new BattleshipGame(player2);

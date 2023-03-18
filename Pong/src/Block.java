@@ -78,6 +78,7 @@ public class Block implements Locatable
    {
       yPos = y;
    }
+
    public void setPos(int x, int y)
    {
       xPos = x;
@@ -87,6 +88,16 @@ public class Block implements Locatable
    public void setColor(Color col)
    {
       color = col;
+   }
+   
+   public void setHeight(int height)
+   {
+      this.height = height;
+   }
+
+   public void setWidth(int width)
+   {
+      this.width = width;
    }
 
    public void draw(Graphics window)
