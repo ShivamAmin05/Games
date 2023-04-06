@@ -41,7 +41,6 @@ public class Ship extends MovingThing
 		catch(Exception e)
 		{
 			//feel free to do something here
-			System.out.println("NOOOOOO");
 		}
 	}
 
@@ -80,7 +79,7 @@ public class Ship extends MovingThing
 
 	public void draw( Graphics window )//this is done
 	{
-   	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+   		window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
 	}
 
 	public String toString()//this is done
