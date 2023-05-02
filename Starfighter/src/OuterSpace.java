@@ -38,11 +38,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
     // Ship, Alien
     ship = new Ship(0, 0, 50, 50, 5);
     shots = new Bullets();
-    aliens = new AlienHorde(2);
-    aliens.add(new Alien(100, 40, 50, 50, 10));
-    aliens.add(new Alien(200, 40, 50, 50, 10));
-    aliens.add(new Alien(300, 40, 50, 50, 10));
-    aliens.add(new Alien(400, 40, 50, 50, 10));
+    aliens = new AlienHorde(3);
+    // aliens.add(new Alien(100, 40, 50, 50, 1));
+    // aliens.add(new Alien(200, 40, 50, 50, 1));
+    // aliens.add(new Alien(300, 40, 50, 50, 1));
+    // aliens.add(new Alien(400, 40, 50, 50, 1));
     // alien1 = new Alien(100, 40, 50, 50, 10);
     // alien2 = new Alien(200, 40, 50, 50, 10);
     this.addKeyListener(this);
@@ -69,9 +69,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
     Graphics graphToBack = back.createGraphics();
 
     graphToBack.setColor(Color.BLUE);
-    graphToBack.drawString("StarFighter ", 25, 50);
+    window.drawString("StarFighter ", 25, 50);
     graphToBack.setColor(Color.BLACK);
     graphToBack.fillRect(0, 0, 800, 600);
+    graphToBack.setColor(Color.BLUE);
+    graphToBack.drawString("Points: " + aliens.getPoints(), 730, 20);
 
     if (keys[0] == true) {
       ship.move("LEFT");
@@ -91,15 +93,17 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
       keys[4] = false;
     }
     // add code to move Ship, Alien, etc.
-
+    
     // add in collision detection to see if Bullets hit the Aliens and if Bullets
     // hit the Ship
    
     ship.draw(graphToBack);
+    aliens.SpawnRandom();
     aliens.drawEmAll(graphToBack);
     shots.drawEmAll(graphToBack); 
     shots.moveEmAll();
     shots.cleanEmUp();
+    aliens.moveEmAll();
     aliens.removeDeadOnes(shots.getList());
     twoDGraph.drawImage(back, null, 0, 0);
   }
